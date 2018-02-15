@@ -7,20 +7,23 @@ col = db.restaurants
 
 def get_borough(borough = "Queens"):
     cursor = col.find({"borough":borough})
-    
-    print cursor
-    print "print cursor works"
+    for each in cursor:
+        print each
+
+def get_zip(zip_code = "11368"):
+    cursor = col.find({"address.zipcode":zip_code})
     
     for each in cursor:
         print each
 
-def get_zip(zip_code = "10282"):
-    cursor = col.find({"address"."zipcode":zip_code})
-    
-    print cursor
-    print "print cursor works"
-    
+def get_zip_grade(zip_code = "11368", grade = "A"):
+    cursor = col.find({"grades.grade":grade}, {"address.zipcode":zip_code})
     for each in cursor:
         print each
 
-get_zip()
+def get_zip_score(zip_code = "11368", score = 10):
+    cursor = col.find({"grades.score":{ "$lt" : score }}, {"address.zipcode":zip_code})
+    for each in cursor:
+        print each
+
+get_zip_score()
