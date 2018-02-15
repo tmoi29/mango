@@ -17,12 +17,12 @@ def get_zip(zip_code = "11368"):
         print each
 
 def get_zip_grade(zip_code = "11368", grade = "A"):
-    cursor = col.find({"grades.grade":grade}, {"address.zipcode":zip_code})
+    cursor = col.find({"grades.grade":grade, "address.zipcode":zip_code})
     for each in cursor:
         print each
 
 def get_zip_score(zip_code = "11368", score = 10):
-    cursor = col.find({"grades.score":{ "$lt" : score }}, {"address.zipcode":zip_code})
+    cursor = col.find({"grades.score":{ "$lt" : score }, "address.zipcode":zip_code})
     for each in cursor:
         print each
 
