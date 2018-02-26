@@ -10,8 +10,21 @@ import urllib2, json
 
 
 """
-SETUP
+This database is a list of all Nobel Prize laureates
 
+name       : Laureate
+
+url        : http://api.nobelprize.org/v1/laureate.json
+
+import     : The import mechanism takes advantage of the json format of the original dataset,
+mechanism    especially the fact that every entry (every laureate) is formatted as a doc.
+             Each laureate is inserted "as is" into the database from the .json dataset.
+
+"""
+
+"""
+SETUP CODE
+ENABLE TO UPLOAD DATASET ONTO LISA.STUY.EDU
 
 def load_json():
     url = "http://api.nobelprize.org/v1/laureate.json"
@@ -27,7 +40,7 @@ json = load_json()
 
 for laureate in json["laureates"]:
     db.laureates.insert(laureate)
-    """
+"""
     
 c = MongoClient("lisa.stuy.edu", 27017)  
 db = c.mango
