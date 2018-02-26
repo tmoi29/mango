@@ -42,6 +42,7 @@ for laureate in json["laureates"]:
     db.laureates.insert(laureate)
 """
     
+
 c = MongoClient("lisa.stuy.edu", 27017)  
 db = c.mango
 col = db.laureates
@@ -62,11 +63,11 @@ def search_deathCountry(country = "USA"):
 #search_deathCountry()
 
 #Finds Laureates from a given country who won a prize in a given category
-def search_birth_category(country = "USA", cat = "physics"):
-    cursor = col.find({"diedCountry":country, "prizes.category": cat})
+def search_category(cat = "physics"):
+    cursor = col.find({"prizes.category": cat})
     for each in cursor:
         print each
-#search_birth_category()
+#search_category()
 
 #Finds Laureates that won a prize in a given year
 def search_year_won(year = 2000):
@@ -77,10 +78,14 @@ def search_year_won(year = 2000):
 
 #Finds Laureates with a given name
 
-def search_name(name = "Albert Einstein"):
-    surname = name.split(" ")[1]
-    first = name.split(' ')[0]
-    cursor = col.find({"$and":[{"surname": surname}, {"firstname": first}]})
+def search_name(f_name = "Albert", surname= "Einstein"):
+    cursor = []
+    if (f_name == ""):
+         cursor = col.find({"surname": surname})
+    if (surname == ""):
+        cursor = col.find({"firstname": f_name})
+    if (f_name != "" and surname != ""):
+        cursor = col.find({"$and":[{"surname": surname}, {"firstname": f_name}]})
     for each in cursor:
         print each
 search_name()
