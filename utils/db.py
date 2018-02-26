@@ -63,7 +63,7 @@ def search_deathCountry(country = "USA"):
 #search_deathCountry()
 
 #Finds Laureates from a given country who won a prize in a given category
-def search_ategory(cat = "physics"):
+def search_category(cat = "physics"):
     cursor = col.find({"prizes.category": cat})
     for each in cursor:
         print each
