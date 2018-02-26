@@ -10,15 +10,15 @@ import urllib2, json
 
 
 """
-This database is a list of all Nobel Prize laureates
+This database is a list of all Nobel Prize laureates and their information, including the laureate's full name, date and place of birth and death, award, its year, category, and reason for receiving the award.
 
-name       : Laureate
+name             : Laureate
 
-url        : http://api.nobelprize.org/v1/laureate.json
+source           : nobelprize.org
 
-import     : The import mechanism takes advantage of the json format of the original dataset,
-mechanism    especially the fact that every entry (every laureate) is formatted as a doc.
-             Each laureate is inserted "as is" into the database from the .json dataset.
+url              : http://api.nobelprize.org/v1/laureate.json
+
+import mechanism : The import mechanism takes advantage of the json format of the original dataset, especially the fact that every entry (every laureate) is formatted as a doc. Each laureate is inserted "as is" into the database from the .json dataset.
 
 """
 
