@@ -6,6 +6,39 @@
     </title>
   </head>
   <body>
-    {{results}}
+    <h2>Results</h2>
+    <h6>Does not guarentee correct award displayed if laureate has received multiple Nobel Prizes, if at least one of them satisfies the condition.
+      <br>
+      (Frederick Sanger, Linus Pauling, John Bardeen, and Marie Curie are the only four to receive the Nobel Prize twice)
+      <br>
+      The Raw Output section will, however, have the correct award displayed, aleit in difficult-to-read format
+    </h6>
+    <ul>
+      {% for result in results%}
+      <li>
+	<ul>
+	  <li><h4>{{result.firstname}} {{result.surname}}<h4></li>
+	  <li>Category: {{result.prizes.0.category}}</li>
+	  <li>Affiliation:
+	    <ul>
+	      <li>City: {{ result.prizes.0.affiliations.0.city }}</li>
+	      <li>Name: {{ result.prizes.0.affiliations.0.name }}</li>
+	      <li>Country: {{ result.prizes.0.affiliations.0.country }}</li>
+	    </ul>
+	  </li>
+	  <li>Motivation: {{result.prizes.0.motivation}}</li>
+	  <li>Year: {{result.prizes.0.year}}</li>
+	  <li>Share: {{result.prizes.0.share}}</li>
+	  
+	  </ul>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <h2>Raw Output</h2>
+    {% for result in results %}
+    {{result}}
+    <hr>
+    {% endfor %}
   </body>
 </html>

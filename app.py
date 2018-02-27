@@ -1,3 +1,11 @@
+
+"""
+Yuanchu Liu and Tiffany Moi
+SoftDev2 pd7
+K06 -- Ay Mon, Go Git It From Yer Flask
+2018-02-26
+"""
+
 import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import urllib2, json
