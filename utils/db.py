@@ -42,43 +42,52 @@ for laureate in json["laureates"]:
     db.laureates.insert(laureate)
 """
     
-
-c = MongoClient("lisa.stuy.edu", 27017)  
-db = c.mango
-col = db.laureates
+def get_col():
+    c = MongoClient("lisa.stuy.edu", 27017)  
+    db = c.mango
+    col = db.laureates
+    return col
 
 
 #Finds Laureates born in a given country
-def search_birthCountry(country = "USA"):
+def search_birthCountry(col, country = "USA"):
     cursor = col.find({"bornCountry":country})
+    ret = []
     for each in cursor:
-        print each
+        ret.append(each)
+    return ret
 #search_birthCountry()
 
 #Finds Laureates who died in a given country
-def search_deathCountry(country = "USA"):
+def search_deathCountry(col, country = "USA"):
     cursor = col.find({"diedCountry":country})
+    ret = []
     for each in cursor:
-        print each
+        ret.append(each)
+    return ret
 #search_deathCountry()
 
 #Finds Laureates from a given country who won a prize in a given category
-def search_category(cat = "physics"):
+def search_category(col, cat = "physics"):
     cursor = col.find({"prizes.category": cat})
+    ret = []
     for each in cursor:
-        print each
+        ret.append(each)
+    return ret
 #search_category()
 
 #Finds Laureates that won a prize in a given year
-def search_year_won(year = 2000):
+def search_year_won(col, year = 2000):
     cursor = col.find({"prizes.year": str(year)})
+    ret = []
     for each in cursor:
-        print each
+        ret.append(each)
+    return ret
 #search_year_won()
 
 #Finds Laureates with a given name
 
-def search_name(f_name = "Albert", surname= "Einstein"):
+def search_name(col, f_name = "Albert", surname= "Einstein"):
     cursor = []
     if (f_name == ""):
          cursor = col.find({"surname": surname})
@@ -86,7 +95,9 @@ def search_name(f_name = "Albert", surname= "Einstein"):
         cursor = col.find({"firstname": f_name})
     if (f_name != "" and surname != ""):
         cursor = col.find({"$and":[{"surname": surname}, {"firstname": f_name}]})
+    ret = []
     for each in cursor:
-        print each
-search_name()
+        ret.append(each)
+    return ret
+#search_name()
 

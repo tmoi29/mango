@@ -4,39 +4,122 @@
     <title>
       home
     </title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {font-family: Arial;}
+
+      /* Style the tab */
+      .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+      }
+
+      /* Style the buttons inside the tab */
+      .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+      }
+
+      /* Change background color of buttons on hover */
+      .tab button:hover {
+      background-color: #ddd;
+      }
+
+      /* Create an active/current tablink class */
+      .tab button.active {
+      background-color: #ccc;
+      }
+
+      /* Style the tab content */
+      .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+      }
+    </style>
   </head>
+    
+    
+    
   <body>
-    <div class="w3-bar w3-black">
-      <button class="w3-bar-item w3-button" onclick="openCity('London')">Search by Name</button>
-      <button class="w3-bar-item w3-button" onclick="openCity('Paris')">Country of Birth</button>
-      <button class="w3-bar-item w3-button" onclick="openCity('Tokyo')">Country of Death</button>
-      <button class="w3-bar-item w3-button" onclick="openCity('Tokyo')">Category</button>
-      <button class="w3-bar-item w3-button" onclick="openCity('Tokyo')">Year of Award</button>
+    <div class="tab">
+      <button class="tablinks" onclick="openTab(event,'Name')">Search by Name</button>
+      <button class="tablinks" onclick="openTab(event,'Birth')">Country of Birth</button>
+      <button class="tablinks" onclick="openTab(event,'Death')">Country of Death</button>
+      <button class="tablinks" onclick="openTab(event,'Category')">Category</button>
+      <button class="tablinks" onclick="openTab(event,'Year')">Year of Award</button>
     </div>
 
-    <div id="London" class="w3-container city">
-      <h2>search by name</h2>
-      <p>London is the capital city of England.</p>
+    <div id="Name" class="tabcontent">
+      <h2>Search by Name</h2>
+      <form action = "/name">
+        <input name="firstname" placeholder="First Name" type="text">
+        <input name="surname" placeholder="Last Name" type="text">
+        <input type="submit">
+      </form>
     </div>
 
-    <div id="Paris" class="w3-container city" style="display:none">
-      <h2>serach by country of birth</h2>
-      <p>Paris is the capital of France.</p> 
+    <div id="Birth" class="tabcontent" style="display:none">
+      <h2>Search by Country of Birth</h2>
+      <form action = "/birth">
+        <input name="country" placeholder="Country" type="text">
+        <input type="submit" >
+      </form>
     </div>
 
-    <div id="Tokyo" class="w3-container city" style="display:none">
-      <h2>search by country of death</h2>
-      <p>Tokyo is the capital of Japan.</p>
+    <div id="Death" class="tabcontent" style="display:none">
+      <h2>Search by Country of Death</h2>
+      <form action = "/death">
+        <input name="country" placeholder="Country" type="text">
+        <input type="submit">
+      </form>
     </div>
+    <div id="Category" class="tabcontent" style="display:none">
+      <h2>Search by Category</h2>
+      <form action = "/category">
+	<select name="category">
+	  <option value="physics">Physics</option>
+	  <option value="chemistry">Chemistry</option>
+	  <option value="medicine">Medicine</option>
+	  <option value="literature">Literature</option>
+          <option value="peace">Peace</option>
+          <option value="economic sciences">Economic Sciences</option>
+	</select>
+        <input type="submit">
+      </form>
+    </div>
+    <div id="Year" class="tabcontent" style="display:none">
+      <h2>Search by Year Awarded</h2>
+      <form action = "/year">
+        <input name="year" placeholder="Year" type="text">
+        <input type="submit">
+      </form>
+    </div>
+      
+      
     <script>
-      function openCity(cityName) {
-      var i;
-      var x = document.getElementsByClassName("city");
-      for (i = 0; i < x.length; i++) {
-		      x[i].style.display = "none";  
+      function openTab(evt, name) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+		      tabcontent[i].style.display = "none";
 		      }
-		      document.getElementById(cityName).style.display = "block";  
-		      }
-		      </script>
+		      tablinks = document.getElementsByClassName("tablinks");
+		      for (i = 0; i < tablinks.length; i++) {
+				      tablinks[i].className = tablinks[i].className.replace(" active", "");
+				      }
+				      document.getElementById(name).style.display = "block";
+				      evt.currentTarget.className += " active";
+				      }
+				      </script>
   </body>
 </html>
